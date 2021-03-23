@@ -26,10 +26,12 @@ app.listen(3000, () => console.log("Server Up and running"));
 
 app.set("view engine", "ejs");
 
-//get
+// GET METHOD
 app.get("/", (req, res) => {
-  res.render("todo.ejs");
-});
+    TodoTask.find({}, (err, tasks) => {
+    res.render("todo.ejs", { todoTasks: tasks });
+    });
+    });
 
 //post method
 app.post("/", (req, res) => {
